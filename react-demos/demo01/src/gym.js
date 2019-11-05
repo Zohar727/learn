@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
+import {CSSTransition , TransitionGroup} from 'react-transition-group'
 import GymItem from './gymItem';
+import Boss from './boss';
 import axios from 'axios';
 
 class Gym extends Component {
@@ -49,24 +51,35 @@ class Gym extends Component {
     return (
       <Fragment>
         <div>
-          <label htmlFor="project">Add Project</label>
+          <label htmlFor="project">Add Projects</label>
           <input value={this.state.inputValue} onChange={this.inputChange} id="project"/>
           <button onClick={this.addList}>add project</button>
           </div>
         <ul>
-          {
-            this.state.list.map((item, index) => {
-              return (
-                <GymItem 
-                content={item}
-                key={index+item}
-                deleteItem={this.deleteItem}
-                index={index}
-                />
-              )
-            })
-          }
+          <TransitionGroup>
+            {
+              this.state.list.map((item, index) => {
+                return (
+                  <CSSTransition
+                    timeout={1000}
+                    classNames='boss-text'
+                    unmountOnExit
+                    appear={true}
+                    key={index+item}
+                  >
+                    <GymItem 
+                    content={item}
+                    key={index+item}
+                    deleteItem={this.deleteItem}
+                    index={index}
+                    />
+                  </CSSTransition>
+                )
+              })
+            }
+          </TransitionGroup>
         </ul>
+        <Boss />
       </Fragment>
     )
   }
