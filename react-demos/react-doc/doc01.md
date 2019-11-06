@@ -18,3 +18,5 @@
 - `componentDidUpdate()`
 #### Unmounting 销毁阶段
 - `componentWillUnmount()`
+
+### redux
