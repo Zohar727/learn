@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css';
-import {Input, Button, List} from 'antd';
 import store from './store'
-// import {CHANGE_INPUT, ADD_ITEM, DELETE_ITEM} from './store/actionTypes';
-import {changeInputAction, addItemAction, deleteItemAction} from './store/actionCreatores'
-
-// const data = [
-//     'to finish month report',
-//     'daily meeting',
-//     'do some excrise',
-//     'buy some fruit'
-// ]
+import {changeInputAction, addItemAction, deleteItemAction, getListAction} from './store/actionCreatores'
+import TodoListUI from './TodoListUI';
+import axios from 'axios';
 
 class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
         this.submit = this.submit.bind(this);
-        // this.deleteItem = this.deleteItem.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
         this.changInputValue = this.changInputValue.bind(this);
         this.storeChange = this.storeChange.bind(this);
         store.subscribe(this.storeChange); // 订阅redux状态
         console.log(this.state);
+    }
+
+    componentDidMount () {
+        axios.get('https://easy-mock.bookset.io/mock/5da922580e8b45138e6ccd63/gym/list').then((res) => {
+            console.log(res.data);
+            const data = res.data;
+            const action = getListAction(data);
+            store.dispatch(action);
+        });
     }
 
     storeChange () {
@@ -47,21 +48,13 @@ class TodoList extends Component {
 
     render() { 
         return ( 
-            <div>
-                <div>
-                    <Input placeholder={this.state.inputValue} style={{width:'250px'}} onChange={this.changInputValue}/>
-                    <Button type="primary" onClick={this.submit}>Add</Button>
-                </div>
-                <div>
-                    <List 
-                        bordered
-                        dataSource={this.state.list}
-                        renderItem={(item, index) => (
-                            <List.Item onClick={this.deleteItem.bind(this, index)}>{item}</List.Item>
-                        )}
-                    />
-                </div>
-            </div>
+            <TodoListUI
+                inputValue={this.state.inputValue}
+                list={this.state.list}
+                changInputValue={this.changInputValue}
+                submit={this.submit}
+                deleteItem={this.deleteItem}
+            />
          );
     }
 }

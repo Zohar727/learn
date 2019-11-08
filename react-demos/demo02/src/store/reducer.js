@@ -1,7 +1,7 @@
-import {CHANGE_INPUT, ADD_ITEM, DELETE_ITEM} from './actionTypes';
+import {CHANGE_INPUT, ADD_ITEM, DELETE_ITEM, GET_LIST} from './actionTypes';
 
 const defaultState = {
-    inputValue: 'input anything',
+    inputValue: '',
     list: [
         'to finish month report',
         'daily meeting',
@@ -29,6 +29,12 @@ export default (state = defaultState,action) => {
         let newState = JSON.parse(JSON.stringify(state));
         newState.list.splice(action.index, 1);
         return newState
+    }
+
+    if (action.type === GET_LIST) {
+        let newState = JSON.parse(JSON.stringify(state));
+        newState.list = action.data.list;
+        return newState;
     }
 
     return state;
