@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import {Input, Button, List} from 'antd';
 import store from './store'
+// import {CHANGE_INPUT, ADD_ITEM, DELETE_ITEM} from './store/actionTypes';
+import {changeInputAction, addItemAction, deleteItemAction} from './store/actionCreatores'
 
 // const data = [
 //     'to finish month report',
@@ -28,26 +30,18 @@ class TodoList extends Component {
 
     changInputValue (e) {
         console.log(e.target.value);
-        const action = {
-            type: 'changeInput',
-            value: e.target.value
-        }
+        const action = changeInputAction(e.target.value);
         store.dispatch(action);
     }
 
     submit () {
-        const action = {
-            type: 'addItem'
-        }
+        const action = addItemAction();
         store.dispatch(action);
         console.log('click submit');
     }
 
     deleteItem (index) {
-        const action = {
-            type: 'delItem',
-            index: index
-        }
+        const action = deleteItemAction(index);
         store.dispatch(action);
     }
 
@@ -63,7 +57,7 @@ class TodoList extends Component {
                         bordered
                         dataSource={this.state.list}
                         renderItem={(item, index) => (
-                            <List.Item onClick={this.deleteItem(index).bind(this)}>{item}</List.Item>
+                            <List.Item onClick={this.deleteItem.bind(this, index)}>{item}</List.Item>
                         )}
                     />
                 </div>
