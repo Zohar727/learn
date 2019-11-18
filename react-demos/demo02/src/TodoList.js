@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import store from './store'
-import {changeInputAction, addItemAction, deleteItemAction, getListAction} from './store/actionCreatores'
+// import {changeInputAction, addItemAction, deleteItemAction, getTodoList} from './store/actionCreatores'
+import {changeInputAction, addItemAction, deleteItemAction, getMyListAction} from './store/actionCreatores'
 import TodoListUI from './TodoListUI';
-import axios from 'axios';
+// import axios from 'axios';
 
 class TodoList extends Component {
     constructor(props) {
@@ -17,12 +18,21 @@ class TodoList extends Component {
     }
 
     componentDidMount () {
-        axios.get('https://easy-mock.bookset.io/mock/5da922580e8b45138e6ccd63/gym/list').then((res) => {
-            console.log(res.data);
-            const data = res.data;
-            const action = getListAction(data);
-            store.dispatch(action);
-        });
+        // axios.get('https://easy-mock.bookset.io/mock/5da922580e8b45138e6ccd63/gym/list').then((res) => {
+        //     console.log(res.data);
+        //     const data = res.data;
+        //     const action = getListAction(data);
+        //     store.dispatch(action);
+        // });
+
+        // react-thunk demo
+        // const action = getTodoList();
+        // store.dispatch(action);
+
+        // react-saga demo
+        const action = getMyListAction();
+        store.dispatch(action);
+
     }
 
     storeChange () {
