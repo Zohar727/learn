@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Index from './Pages/index';
 import Video from './Pages/Video';
-import Workplace from './Pages/Workplace'
+import Workplace from './Pages/Workplace';
+import Others from './Pages/Others';
 import './index.css';
 
 function AppRouter() {
@@ -15,6 +16,7 @@ function AppRouter() {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/video/">video</Link></li>
                         <li><Link to="/workplace/">skill</Link></li>
+                        <li><Link to="/others/"></Link> </li>
                     </ul>
                 </div>
 
@@ -22,6 +24,7 @@ function AppRouter() {
                     <Route path="/" exact component={Index} />
                     <Route path="/video/" component={Video} />
                     <Route path="/workplace/" component={Workplace} />
+                    <Route path="/others" component={Others} />
                 </div>
             </div>
         </Router>
