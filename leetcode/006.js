@@ -56,4 +56,40 @@ var convert = function(s, numRows) {
     
 };
 
+var convertNew = function(s, numRows) {
+    if (numRows == 1) return s;
+    let len = s.length;
+    let cycle = 2 * numRows - 2;
+    let strArr = [];
+    for (var i=0; i< numRows; i++) {
+        var j=0;
+        while (true) {
+            let index = 0;
+            if (i == 0 || i == (numRows - 1)) {
+                index = j * cycle + i;
+            } else {
+                // 判断周期
+                let times = Math.floor(j/2);
+                // 判断字符
+                let serial = (j+1)%2;
+                if (serial == 1) {
+                    index = times * cycle + i; 
+                } else {
+                    index = (times + 1) * cycle - i;
+                }
+            }
+
+            // 录入对应下标的字符
+            if (index < len) {
+                strArr.push(s.charAt(index));
+                j++;
+            } else {
+                break;
+            }
+        }
+    }
+    return strArr.join('');
+}
+
 console.log(convert('ABCDEFGHIJKLMNOPQRST', 5));
+console.log(convertNew('ABCDEFGHIJKLMNOPQRST', 5));
