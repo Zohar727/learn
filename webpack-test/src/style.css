@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'comicNeue';
+    src: url(./fonts/ComicNeue-Regular.ttf);
+    font-weight: 600;
+    font-style: normal;
+}
 .red {
+    font-size: 26px;
+    width: 400px;
+    height: 600px;
     color: red;
+    background: url(./bg.png);
+    font-family: 'comicNeue';
 }
