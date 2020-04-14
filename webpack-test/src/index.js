@@ -1,19 +1,23 @@
 import _ from 'lodash';
-import './style.css';
-import Icon from './logo.png';
+import printMe from './print';
 
 function component() {
     var element = document.createElement('div');
     element.innerHTML = _.join(['hello', 'webapck'], ' ');
 
+    var btn = document.createElement('button');
+    btn.onclick = printMe;
+
+    element.appendChild(btn);
+
     // css-loader test
-    element.classList.add('red');
+    // element.classList.add('red');
 
     // file-loader test
-    var img = new Image();
-    img.src = Icon;
+    // var img = new Image();
+    // img.src = Icon;
 
-    element.appendChild(img);
+    // element.appendChild(img);
 
     return element;
 }
