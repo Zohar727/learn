@@ -20,7 +20,7 @@ var longestPalindrome = function(s) {
 
 /**
  * 中心扩展算法
- * @param {*} s 
+ * @param {*} s abcdc
  */
 var longestPalindromeNew = function(s) {
     if (s.length == 1) return s;
