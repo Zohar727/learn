@@ -1,3 +1,9 @@
+/**
+ * leetcode 104.二叉树深度遍历 求最大深度
+ * @param {*} root 
+ * @returns 
+ */
+
 var maxDepth = function(root) {
     if (root == null) {
         return 0;
