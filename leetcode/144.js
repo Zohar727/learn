@@ -25,3 +25,6 @@ function preOrderTree (root, res) {
     preOrderTree(root, res);
     return res;
 };
+
+// 迭代写法
+function preOrderTree2 (root, res) {}
