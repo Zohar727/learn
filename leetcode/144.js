@@ -21,7 +21,7 @@ function preOrderTree (root, res) {
 }
  var preorderTraversal = function(root) {
     let res = [];
-    // test
+    // test 2
     preOrderTree(root, res);
     return res;
 };
