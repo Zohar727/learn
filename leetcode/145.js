@@ -26,3 +26,28 @@ function postorder (root, res) {
     postorder(root.right, res);
     res.push(root.val);
 }
+
+// 迭代写法
+function preOrderTree2 (root, res) {
+    var stack = [root];
+    var res = [];
+
+    while (stack.length > 0) {
+        var p = stack.pop();
+        while (p != null) {
+            stack.push(p);
+            p = p.left;
+        }
+        var e = stack.pop();
+        if (e) {
+            while (!e.right) {
+                res.push(e.val);
+                e = stack.pop();            
+            }
+            e = e.right;
+            stack.push(e);            
+        }
+    }
+
+    return res;
+}
