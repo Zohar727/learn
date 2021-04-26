@@ -27,4 +27,20 @@ function preOrderTree (root, res) {
 };
 
 // 迭代写法
-function preOrderTree2 (root, res) {}
+function preOrderTree2 (root, res) {
+    var stack = [root];
+    var res = [];
+
+    while (stack.length > 0) {
+        var p = stack.pop();
+        while (p != null) {
+            res.push(p.val);
+            stack.push(p);
+            p = p.left;
+        }
+        var e = stack.pop();
+        e && stack.push(e.right);   
+    }
+
+    return res;
+}
