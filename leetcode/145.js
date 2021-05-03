@@ -1,5 +1,5 @@
 /**
- * leetcode 144. 二叉树的前序遍历
+ * 145. 二叉树的后序遍历
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
  *     this.val = (val===undefined ? 0 : val)
@@ -11,20 +11,21 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-function preOrderTree (root, res) {
+ var postorderTraversal = function(root) {
+    var res = [];
+    postorder(root, res);
+    return res;
+};
+
+function postorder (root, res) {
     if (root == null) {
         return;
     }
+
+    postorder(root.left, res);
+    postorder(root.right, res);
     res.push(root.val);
-    preOrderTree(root.left, res);
-    preOrderTree(root.right, res);
 }
- var preorderTraversal = function(root) {
-    let res = [];
-    // test 2
-    preOrderTree(root, res);
-    return res;
-};
 
 // 迭代写法
 function preOrderTree2 (root, res) {
@@ -34,12 +35,18 @@ function preOrderTree2 (root, res) {
     while (stack.length > 0) {
         var p = stack.pop();
         while (p != null) {
-            res.push(p.val);
             stack.push(p);
             p = p.left;
         }
         var e = stack.pop();
-        e && stack.push(e.right);   
+        if (e) {
+            while (!e.right) {
+                res.push(e.val);
+                e = stack.pop();            
+            }
+            e = e.right;
+            stack.push(e);            
+        }
     }
 
     return res;
