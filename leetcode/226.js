@@ -24,3 +24,6 @@
 
     return root;
 };
+
+// hotfix 02
+invertTree();
