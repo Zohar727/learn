@@ -22,3 +22,6 @@
 };
 
 console.log(addStrings('11', '123'));
+
+// hotfix01
+console.log(addStrings('11', '123'));
