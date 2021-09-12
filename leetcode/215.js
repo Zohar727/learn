@@ -19,3 +19,6 @@ console.log(res);
 // hotfix 01
 console.log(res);
 console.log('test');
+
+// hotfix03
+console.log('hotfix04');
